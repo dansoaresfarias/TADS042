@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema Tropicana
+-- Schema TropicanaTADS042
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema Tropicana
+-- Schema TropicanaTADS042
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Tropicana` DEFAULT CHARACTER SET utf8 ;
-USE `Tropicana` ;
+CREATE SCHEMA IF NOT EXISTS `TropicanaTADS042` DEFAULT CHARACTER SET utf8 ;
+USE `TropicanaTADS042` ;
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Funcionario`
+-- Table `TropicanaTADS042`.`Funcionario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Funcionario` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Funcionario` (
   `cpf` VARCHAR(14) NOT NULL,
   `nome` VARCHAR(80) NOT NULL,
   `nomeSocial` VARCHAR(45) NULL,
@@ -33,10 +33,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Departamento`
+-- Table `TropicanaTADS042`.`Departamento`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Departamento` (
-  `idDepartamento` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Departamento` (
+  `idDepartamento` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(25) NOT NULL,
   `local` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -46,16 +46,16 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Departamento` (
   INDEX `fk_Departamento_Funcionario1_idx` (`Gerente_cpf` ASC) VISIBLE,
   CONSTRAINT `fk_Departamento_Funcionario1`
     FOREIGN KEY (`Gerente_cpf`)
-    REFERENCES `Tropicana`.`Funcionario` (`cpf`)
+    REFERENCES `TropicanaTADS042`.`Funcionario` (`cpf`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Telefone`
+-- Table `TropicanaTADS042`.`Telefone`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Telefone` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Telefone` (
   `idTelefone` INT NOT NULL AUTO_INCREMENT,
   `numero` VARCHAR(15) NOT NULL,
   `Funcionario_cpf` VARCHAR(14) NULL,
@@ -66,21 +66,21 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Telefone` (
   INDEX `fk_Telefone_Departamento1_idx` (`Departamento_idDepartamento` ASC) VISIBLE,
   CONSTRAINT `fk_Telefone_Funcionario1`
     FOREIGN KEY (`Funcionario_cpf`)
-    REFERENCES `Tropicana`.`Funcionario` (`cpf`)
+    REFERENCES `TropicanaTADS042`.`Funcionario` (`cpf`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_Telefone_Departamento1`
     FOREIGN KEY (`Departamento_idDepartamento`)
-    REFERENCES `Tropicana`.`Departamento` (`idDepartamento`)
+    REFERENCES `TropicanaTADS042`.`Departamento` (`idDepartamento`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Endereco`
+-- Table `TropicanaTADS042`.`Endereco`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Endereco` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Endereco` (
   `Funcionario_cpf` VARCHAR(14) NOT NULL,
   `UF` CHAR(2) NOT NULL,
   `cidade` VARCHAR(45) NOT NULL,
@@ -93,16 +93,16 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Endereco` (
   PRIMARY KEY (`Funcionario_cpf`),
   CONSTRAINT `fk_Endereco_Funcionario`
     FOREIGN KEY (`Funcionario_cpf`)
-    REFERENCES `Tropicana`.`Funcionario` (`cpf`)
+    REFERENCES `TropicanaTADS042`.`Funcionario` (`cpf`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Dependente`
+-- Table `TropicanaTADS042`.`Dependente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Dependente` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Dependente` (
   `cpf` VARCHAR(14) NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
   `dataNasc` DATE NOT NULL,
@@ -113,16 +113,16 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Dependente` (
   INDEX `fk_Dependente_Funcionario1_idx` (`Funcionario_cpf` ASC) VISIBLE,
   CONSTRAINT `fk_Dependente_Funcionario1`
     FOREIGN KEY (`Funcionario_cpf`)
-    REFERENCES `Tropicana`.`Funcionario` (`cpf`)
+    REFERENCES `TropicanaTADS042`.`Funcionario` (`cpf`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Ferias`
+-- Table `TropicanaTADS042`.`Ferias`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Ferias` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Ferias` (
   `idFerias` INT NOT NULL AUTO_INCREMENT,
   `dataInicio` DATE NOT NULL,
   `dataFim` DATE NOT NULL,
@@ -134,17 +134,17 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Ferias` (
   INDEX `fk_Ferias_Funcionario1_idx` (`Funcionario_cpf` ASC) VISIBLE,
   CONSTRAINT `fk_Ferias_Funcionario1`
     FOREIGN KEY (`Funcionario_cpf`)
-    REFERENCES `Tropicana`.`Funcionario` (`cpf`)
+    REFERENCES `TropicanaTADS042`.`Funcionario` (`cpf`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`RegPonto`
+-- Table `TropicanaTADS042`.`RegPonto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`RegPonto` (
-  `idRegPonto` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`RegPonto` (
+  `idRegPonto` INT NOT NULL AUTO_INCREMENT,
   `tipoES` VARCHAR(10) NOT NULL,
   `dataHora` DATETIME NOT NULL,
   `Funcionario_cpf` VARCHAR(14) NOT NULL,
@@ -152,17 +152,17 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`RegPonto` (
   INDEX `fk_RegPonto_Funcionario1_idx` (`Funcionario_cpf` ASC) VISIBLE,
   CONSTRAINT `fk_RegPonto_Funcionario1`
     FOREIGN KEY (`Funcionario_cpf`)
-    REFERENCES `Tropicana`.`Funcionario` (`cpf`)
+    REFERENCES `TropicanaTADS042`.`Funcionario` (`cpf`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Ocorrencia`
+-- Table `TropicanaTADS042`.`Ocorrencia`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Ocorrencia` (
-  `idOcorrencia` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Ocorrencia` (
+  `idOcorrencia` INT NOT NULL AUTO_INCREMENT,
   `dataHoraIni` DATETIME NOT NULL,
   `dataHoraFim` DATETIME NOT NULL,
   `tipo` VARCHAR(25) NOT NULL,
@@ -172,16 +172,16 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Ocorrencia` (
   INDEX `fk_Ocorrencia_Funcionario1_idx` (`Funcionario_cpf` ASC) VISIBLE,
   CONSTRAINT `fk_Ocorrencia_Funcionario1`
     FOREIGN KEY (`Funcionario_cpf`)
-    REFERENCES `Tropicana`.`Funcionario` (`cpf`)
+    REFERENCES `TropicanaTADS042`.`Funcionario` (`cpf`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Cargo`
+-- Table `TropicanaTADS042`.`Cargo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Cargo` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Cargo` (
   `cbo` INT NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cbo`))
@@ -189,40 +189,40 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Trabalhar`
+-- Table `TropicanaTADS042`.`Trabalhar`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Trabalhar` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Trabalhar` (
   `Funcionario_cpf` VARCHAR(14) NOT NULL,
   `Departamento_idDepartamento` INT NOT NULL,
   `Cargo_cbo` INT NOT NULL,
   `dataInicio` DATETIME NOT NULL,
-  `dataFim` DATETIME NOT NULL,
+  `dataFim` DATETIME NULL,
   PRIMARY KEY (`Funcionario_cpf`, `Departamento_idDepartamento`, `Cargo_cbo`),
   INDEX `fk_Funcionario_has_Departamento_Departamento1_idx` (`Departamento_idDepartamento` ASC) VISIBLE,
   INDEX `fk_Funcionario_has_Departamento_Funcionario1_idx` (`Funcionario_cpf` ASC) VISIBLE,
   INDEX `fk_Funcionario_has_Departamento_Cargo1_idx` (`Cargo_cbo` ASC) VISIBLE,
   CONSTRAINT `fk_Funcionario_has_Departamento_Funcionario1`
     FOREIGN KEY (`Funcionario_cpf`)
-    REFERENCES `Tropicana`.`Funcionario` (`cpf`)
+    REFERENCES `TropicanaTADS042`.`Funcionario` (`cpf`)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
   CONSTRAINT `fk_Funcionario_has_Departamento_Departamento1`
     FOREIGN KEY (`Departamento_idDepartamento`)
-    REFERENCES `Tropicana`.`Departamento` (`idDepartamento`)
+    REFERENCES `TropicanaTADS042`.`Departamento` (`idDepartamento`)
     ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_Funcionario_has_Departamento_Cargo1`
     FOREIGN KEY (`Cargo_cbo`)
-    REFERENCES `Tropicana`.`Cargo` (`cbo`)
+    REFERENCES `TropicanaTADS042`.`Cargo` (`cbo`)
     ON DELETE RESTRICT
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Hospede`
+-- Table `TropicanaTADS042`.`Hospede`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Hospede` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Hospede` (
   `cpf_passaporte` VARCHAR(14) NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
   `dataNasc` DATE NOT NULL,
@@ -233,10 +233,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Reserva`
+-- Table `TropicanaTADS042`.`Reserva`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Reserva` (
-  `idReserva` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Reserva` (
+  `idReserva` INT NOT NULL AUTO_INCREMENT,
   `qtdHospedes` INT NOT NULL,
   `status` VARCHAR(15) NOT NULL,
   `dataEntrada` DATETIME NOT NULL,
@@ -248,22 +248,22 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Reserva` (
   INDEX `fk_Reserva_Hospede1_idx` (`Responsavel_cpf_passaporte` ASC) VISIBLE,
   CONSTRAINT `fk_Reserva_Funcionario1`
     FOREIGN KEY (`Funcionario_cpf`)
-    REFERENCES `Tropicana`.`Funcionario` (`cpf`)
+    REFERENCES `TropicanaTADS042`.`Funcionario` (`cpf`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `fk_Reserva_Hospede1`
     FOREIGN KEY (`Responsavel_cpf_passaporte`)
-    REFERENCES `Tropicana`.`Hospede` (`cpf_passaporte`)
+    REFERENCES `TropicanaTADS042`.`Hospede` (`cpf_passaporte`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`UH`
+-- Table `TropicanaTADS042`.`UH`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`UH` (
-  `idUH` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`UH` (
+  `idUH` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `valorDiaria` DECIMAL(6,2) NOT NULL,
   `local` VARCHAR(45) NOT NULL,
@@ -273,9 +273,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Reserva_UH`
+-- Table `TropicanaTADS042`.`Reserva_UH`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Reserva_UH` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Reserva_UH` (
   `Reserva_idReserva` INT NOT NULL,
   `UH_idUH` INT NOT NULL,
   PRIMARY KEY (`Reserva_idReserva`, `UH_idUH`),
@@ -283,21 +283,21 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Reserva_UH` (
   INDEX `fk_Reserva_has_UH_Reserva1_idx` (`Reserva_idReserva` ASC) VISIBLE,
   CONSTRAINT `fk_Reserva_has_UH_Reserva1`
     FOREIGN KEY (`Reserva_idReserva`)
-    REFERENCES `Tropicana`.`Reserva` (`idReserva`)
+    REFERENCES `TropicanaTADS042`.`Reserva` (`idReserva`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_Reserva_has_UH_UH1`
     FOREIGN KEY (`UH_idUH`)
-    REFERENCES `Tropicana`.`UH` (`idUH`)
+    REFERENCES `TropicanaTADS042`.`UH` (`idUH`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Hospedagem`
+-- Table `TropicanaTADS042`.`Hospedagem`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Hospedagem` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Hospedagem` (
   `Reserva_idReserva` INT NOT NULL,
   `valorTotal` DECIMAL(7,2) UNSIGNED ZEROFILL NOT NULL,
   `checkIn` DATETIME NOT NULL,
@@ -305,16 +305,16 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Hospedagem` (
   PRIMARY KEY (`Reserva_idReserva`),
   CONSTRAINT `fk_Hospedagem_Reserva1`
     FOREIGN KEY (`Reserva_idReserva`)
-    REFERENCES `Tropicana`.`Reserva` (`idReserva`)
+    REFERENCES `TropicanaTADS042`.`Reserva` (`idReserva`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Hospedar`
+-- Table `TropicanaTADS042`.`Hospedar`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Hospedar` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Hospedar` (
   `Hospedagem_Reserva_idReserva` INT NOT NULL,
   `Hospede_cpf_passaporte` VARCHAR(14) NOT NULL,
   PRIMARY KEY (`Hospedagem_Reserva_idReserva`, `Hospede_cpf_passaporte`),
@@ -322,21 +322,21 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Hospedar` (
   INDEX `fk_Hospedagem_has_Hospede_Hospedagem1_idx` (`Hospedagem_Reserva_idReserva` ASC) VISIBLE,
   CONSTRAINT `fk_Hospedagem_has_Hospede_Hospedagem1`
     FOREIGN KEY (`Hospedagem_Reserva_idReserva`)
-    REFERENCES `Tropicana`.`Hospedagem` (`Reserva_idReserva`)
+    REFERENCES `TropicanaTADS042`.`Hospedagem` (`Reserva_idReserva`)
     ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_Hospedagem_has_Hospede_Hospede1`
     FOREIGN KEY (`Hospede_cpf_passaporte`)
-    REFERENCES `Tropicana`.`Hospede` (`cpf_passaporte`)
+    REFERENCES `TropicanaTADS042`.`Hospede` (`cpf_passaporte`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tropicana`.`Incidente`
+-- Table `TropicanaTADS042`.`Incidente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tropicana`.`Incidente` (
+CREATE TABLE IF NOT EXISTS `TropicanaTADS042`.`Incidente` (
   `idIncidente` INT NOT NULL AUTO_INCREMENT,
   `valor` DECIMAL(7,2) ZEROFILL UNSIGNED NOT NULL,
   `momento` DATETIME NOT NULL,
@@ -346,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `Tropicana`.`Incidente` (
   INDEX `fk_Incidente_Hospedagem1_idx` (`Hospedagem_Reserva_idReserva` ASC) VISIBLE,
   CONSTRAINT `fk_Incidente_Hospedagem1`
     FOREIGN KEY (`Hospedagem_Reserva_idReserva`)
-    REFERENCES `Tropicana`.`Hospedagem` (`Reserva_idReserva`)
+    REFERENCES `TropicanaTADS042`.`Hospedagem` (`Reserva_idReserva`)
     ON DELETE CASCADE
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;

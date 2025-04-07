@@ -31,4 +31,3 @@ select upper(nome) as "Funcionário", cpf "CPF",
     format(salario, 2, 'de_DE') "Salário" 
 		from funcionario
 			order by nome;
-
