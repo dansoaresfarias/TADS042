@@ -1,9 +1,54 @@
+:root {
+    --corBranca: #FFFFFF;
+    --corPreta: #000000;
+    --cor1: #F1EFEC;
+    --cor2: #D4C9BE;
+    --cor3: #123458;
+    --cor4: #030303;
+}
+
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-left: 5em;
     margin-right: 5em;
-    background-color: #FFFFFF;
+    background-color: var(--corBranca);
     background-image: linear-gradient(115deg, #FFFFFF 0%, #F1EFEC 50%, #D4C9BE 100%);
+}
+
+ul {
+    background-image: url(https://www.significadofacil.com/wp-content/uploads/2019/07/background-1200x800.jpg);
+    background-position: center;
+    color: var(--cor2);
+    list-style: url(https://img.freepik.com/vetores-gratis/carinha-sorridente-estilo-desenho-animado-estrela_78370-1112.jpg?semt=ais_hybrid&w=20);
+}
+
+table {
+    border: 1px solid var(--cor3);
+    border-collapse: collapse;
+    padding: 10px;
+
+    th {
+        background-color: var(--cor3);
+        color: var(--corBranca);
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    td {
+        background-color: var(--cor1);
+        border: 1px solid var(--cor3);
+        color: var(--cor4);
+        text-align: center;
+    }
+    td.justificado{
+        text-align: justify;
+    }
+}
+
+
+p {
+    color: var(--cor4);
+    text-align: justify;
 }
 
 h1 {
@@ -17,11 +62,42 @@ h2.cargo {
     color: #123458;
 }
 
+#cargo {
+    color: #4ae900;
+}
+
 h2 {
-    color: #c52ca4;
+    color: pink;
     font-size: 1.8rem;
+}
+
+footer {
+    font-family: 'Playwrite MX Guides';
 }
 
 .centralizar {
     text-align: center;
+}
+
+#foto {
+    width: 200px;
+    border-radius: 50%;
+    border: 5px solid var(--cor3);
+}
+
+a:link {
+    color: #FF0000;
+}
+
+a:visited {
+    color: #00FF00;
+}
+
+a:hover {
+    color: #FF00FF;
+    font-size: 1.5em;
+}
+
+a:active {
+    color: #0000FF;
 }
