@@ -164,6 +164,68 @@ select year(checkIn), count(Reserva_idReserva)
 	from hospedagem
 		group by year(checkIn);
 
+select date_format(checkIn, '%Y - %m'), count(Reserva_idReserva)
+	from hospedagem
+		group by date_format(checkIn, '%Y - %m')
+			order by date_format(checkIn, '%Y - %m') desc;
+
+select upper(nome) as "Funcionário", cpf "CPF", 
+	date_format(dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+    replace(replace(genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+	email "E-mail", 
+    concat("R$ ", format(salario, 2, 'de_DE')) "Salário",
+    cidade "Cidade",
+    bairro "Bairro"
+		from funcionario, endereco
+			order by nome;
+
+select upper(nome) as "Funcionário", cpf "CPF", 
+	date_format(dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+    replace(replace(genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+	email "E-mail", 
+    concat("R$ ", format(salario, 2, 'de_DE')) "Salário",
+    cidade "Cidade",
+    bairro "Bairro"
+		from funcionario, endereco
+			where cpf = Funcionario_cpf
+				order by nome;
+
+select upper(nome) as "Funcionário", cpf "CPF", 
+	date_format(dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+    replace(replace(genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+	email "E-mail", 
+    concat("R$ ", format(salario, 2, 'de_DE')) "Salário",
+    cidade "Cidade",
+    bairro "Bairro"
+		from funcionario
+			inner join endereco on Funcionario_cpf = cpf
+				order by nome;
+                
+select upper(f.nome) as "Funcionário", f.cpf "CPF", 
+	date_format(f.dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+    replace(replace(f.genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+	f.email "E-mail", 
+    concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário",
+    count(d.cpf) "Quantidade de Dependentes"
+		from funcionario f
+			inner join dependente d on d.Funcionario_cpf = f.cpf
+				group by d.funcionario_cpf
+					order by f.nome;
+
+select upper(f.nome) as "Funcionário", f.cpf "CPF", 
+	date_format(f.dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+    replace(replace(f.genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+	f.email "E-mail", 
+    concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário",
+    count(d.cpf) "Quantidade de Dependentes"
+		from funcionario f
+			left join dependente d on d.Funcionario_cpf = f.cpf
+				group by f.cpf
+					order by f.nome;
+
+
+
+
 
 
 
