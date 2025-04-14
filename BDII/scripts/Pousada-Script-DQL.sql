@@ -160,4 +160,12 @@ select checkIn "Check-In", checkOut "Check-Out",
 		where valorTotal >= (select avg(valorTotal) from hospedagem);
 
 -- Qual a quantidade de hospedagem pro ano/mês         
-select ...
+select year(checkIn), count(Reserva_idReserva) 
+	from hospedagem
+		group by year(checkIn);
+
+
+
+
+
+
