@@ -223,6 +223,16 @@ select upper(f.nome) as "Funcionário", f.cpf "CPF",
 				group by f.cpf
 					order by f.nome;
 
+-- cpf do dependente, dependente, idade, genero, parentesco, 
+-- cpf do responsavel, resposavel
+select d.cpf "CPF do Dependente", d.nome "Dependente", 
+	timestampdiff(year, d.dataNasc, now()) "Idade",
+    replace(replace(d.genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+    d.parentesco "Parentesco",
+    f.cpf "CPF do Responsável", f.nome "Responsável"
+    from dependente d
+		inner join funcionario f on f.cpf = d.Funcionario_cpf
+			order by f.nome;
 
 
 
