@@ -1,0 +1,14 @@
+:root {
+    --corBranca: #FFFFFF;
+    --corPreta: #000000;
+    --cor1: #F1EFEC;
+    --cor2: #D4C9BE;
+    --cor3: #123458;
+    --cor4: #030303;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--corBranca);
+    background-image: linear-gradient(115deg, var(--corBranca) 0%, var(--cor1) 50%, var(--cor2) 100%);    
+}
