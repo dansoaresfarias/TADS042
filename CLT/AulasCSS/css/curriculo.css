@@ -62,6 +62,12 @@ h2.cargo {
     color: #123458;
 }
 
+div.cargo {
+    background-color: #FF0000;
+    margin-left: -5em;
+    margin-right: -5em;
+}
+
 #cargo {
     color: #4ae900;
 }
