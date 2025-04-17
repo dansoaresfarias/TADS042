@@ -82,6 +82,12 @@ a.menuDanilo:hover {
     color: var(--corBranca);
 }
 
+a {
+    text-decoration: none;
+    color: var(--corPreta);
+    font-weight: bold;
+}
+
 th.curriculo {
     background-color: var(--cor3);
     color: var(--corBranca);
