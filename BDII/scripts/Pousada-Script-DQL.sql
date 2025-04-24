@@ -234,9 +234,20 @@ select d.cpf "CPF do Dependente", d.nome "Dependente",
 		inner join funcionario f on f.cpf = d.Funcionario_cpf
 			order by f.nome;
 
+create view vRelFuncDependente as
+	select upper(f.nome) as "Funcionário", f.cpf "CPF", 
+		date_format(f.dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+		replace(replace(f.genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+		f.email "E-mail", 
+		concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário",
+		count(d.cpf) "Quantidade de Dependentes"
+			from funcionario f
+				left join dependente d on d.Funcionario_cpf = f.cpf
+					group by f.cpf
+						order by f.nome;
 
-
-
+select * from vrelfuncdependente
+	where `Quantidade de Dependentes` >= 2;
 
 
 
