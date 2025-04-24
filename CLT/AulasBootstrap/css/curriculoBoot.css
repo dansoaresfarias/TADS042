@@ -61,6 +61,11 @@ p.justificado {
     width: 18em;
 }
 
+.subTopBcgCont {
+    background-color: var(--cor3);
+    width: 7em;
+}
+
 .subTopBcgEnd {
     background-color: var(--cor3);
     width: 8em;
@@ -86,6 +91,22 @@ a {
     text-decoration: none;
     color: var(--corPreta);
     font-weight: bold;
+}
+
+button.formulario {
+    background-color: var(--cor3);
+    color: var(--corBranca);
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button.formulario:hover {
+    background-color: var(--cor4);
+    color: var(--corBranca);
 }
 
 th.curriculo {
@@ -122,6 +143,10 @@ th.largo10{
 }
 
 #habilidades{
+    scroll-margin-top: 85px;
+}
+
+#contato{
     scroll-margin-top: 85px;
 }
 

@@ -27,6 +27,7 @@
             </a>
             <a class="menuDanilo mx-2" href="#experiencia">Experiência Profissional</a>
             <a class="menuDanilo mx-2" href="#habilidades">Habilidades</a>
+            <a class="menuDanilo mx-2" href="#contato">Contato</a>
             <a class="menuDanilo mx-2" href="#endereco">Endereço</a>
         </div>
     </nav>
@@ -168,6 +169,55 @@
                     <li>Desenvolvimento Aplicações para Saúde</li>
                     <li>Linguagens de Programação: JAVA, C#, TypeScript, NodeJS</li>
                 </ul>
+            </div>
+            <div class="card hrBcg my-2"></div>
+        </div>
+        <div id="contato" class="container">
+            <h2>Contato</h2>
+            <div class="card subTopBcgCont my-2"></div>
+            <div class="container">
+                <p class="justificado">Para entrar em contato, utilize o formulário abaixo:</p>
+                <form action="">
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="nome" class="form-label"><strong>Nome</strong></label>
+                            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="Sobrenome" class="form-label"><strong>Sobrenome</strong></label>
+                            <input type="text" class="form-control" id="sobrenome" placeholder="Digite seu sobrenome" required>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="email" class="form-label"><strong>Email</strong></label>
+                            <input type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="telefone" class="form-label"><strong>Telefone</strong></label>
+                            <input type="tel" class="form-control" id="telefone"
+                                placeholder="Digite seu telefone | (99)99999-9999" pattern="([0-9]{2})[0-9]{5}-[0-9]{4}" required>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-6">
+                                <label for="dataHora" class="form-label"><strong>Data/Hora</strong></label>
+                                <input type="datetime-local" class="form-control" id="dataHora" required min="2025-04-23" max="2025-12-31">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="mensagem" class="form-label"><strong>Mensagem</strong></label>
+                                <textarea class="form-control" id="mensagem" rows="3" placeholder="Conte sua história..."
+                                    required></textarea>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-12 text-center">
+                            <button type="reset" class="btn formulario">Cancelar</button>
+                            <button type="submit" class="btn formulario">Enviar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="card hrBcg my-2"></div>
         </div>
