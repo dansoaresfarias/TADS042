@@ -248,6 +248,72 @@ create view vRelFuncDependente as
 
 select * from vrelfuncdependente
 	where `Quantidade de Dependentes` >= 2;
+    
+select upper(f.nome) as "Funcionário", f.cpf "CPF", 
+		date_format(f.dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+		replace(replace(f.genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+		f.email "E-mail", 
+		concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário",
+		concat("R$ ", format(count(d.cpf) * 180, 2, 'de_DE')) "Auxílio Creche"
+			from funcionario f
+				left join dependente d on d.Funcionario_cpf = f.cpf
+                where timestampdiff(year, d.dataNasc, now()) <= 6
+					group by f.cpf
+						order by f.nome;
+
+select cpf, nome, timestampdiff(year, dataNasc, now()) "idade",
+	funcionario_cpf from dependente
+		where timestampdiff(year, dataNasc, now()) <= 6;
+
+create view vDepAuxCreche as
+	select cpf, nome, timestampdiff(year, dataNasc, now()) "idade",
+		funcionario_cpf from dependente
+			where timestampdiff(year, dataNasc, now()) <= 6;
+
+select upper(f.nome) as "Funcionário", f.cpf "CPF", 
+		date_format(f.dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+		replace(replace(f.genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+		f.email "E-mail", 
+		concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário",
+		concat("R$ ", format(count(d.cpf) * 180, 2, 'de_DE')) "Auxílio Creche"
+			from funcionario f
+				left join vdepauxcreche d on d.Funcionario_cpf = f.cpf
+					group by f.cpf
+						order by f.nome;
+                        
+create view vRelFuncionarioAuxCreche as
+	select upper(f.nome) as "Funcionário", f.cpf "CPF", 
+		date_format(f.dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+		replace(replace(f.genero, 'F', "Feminino"), 'M', "Masculino") "Gênero", 
+		f.email "E-mail", 
+		concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário",
+        concat("R$ ", format(count(d.cpf) * 180, 2, 'de_DE')) "Auxílio Creche"
+			from funcionario f
+				left join vdepauxcreche d on d.Funcionario_cpf = f.cpf
+					group by f.cpf
+						order by f.nome;
+                        
+select f.cpf "CPF", f.nome "Funcionário", 
+	count(r.idReserva) "Quantidade de Reservas"
+		from funcionario f
+			inner join reserva r on r.Funcionario_cpf = f.cpf
+				where r.`status` like "Confirmada" or
+					r.`status` like "Chec%" 
+                     group by r.Funcionario_cpf;
+
+select f.cpf "CPF", f.nome "Funcionário", 
+	count(r.idReserva) "Quantidade de Reservas",
+    concat("R$ ", format(sum(h.valorTotal), 2, 'de_DE')) "Faturamento Bruto",
+    concat("R$ ", format(sum(h.valorTotal)/count(r.idReserva), 2, 'de_DE')) "Taxa de Efetividade"
+		from funcionario f
+			inner join reserva r on r.Funcionario_cpf = f.cpf
+            inner join hospedagem h on h.Reserva_idReserva = r.idReserva
+				where r.`status` like "Confirmada" or
+					r.`status` like "Chec%" 
+                     group by r.Funcionario_cpf;
+
+
+
 
 
 
