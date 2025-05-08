@@ -312,9 +312,62 @@ select f.cpf "CPF", f.nome "Funcionário",
 					r.`status` like "Chec%" 
                      group by r.Funcionario_cpf;
 
+select date_format(ocr.dataHoraIni, '%H:%i - %d/%m/%Y') "Data de Início da Ocorrência",
+	date_format(ocr.dataHoraFim, '%H:%i - %d/%m/%Y') "Data de Fim da Ocorrência",
+    ocr.tipo "Tipo da Ocorrência", ocr.obs "Observação", 
+    ocr.Funcionario_cpf "CPF Funcionário", func.nome "Funcionário"
+	from ocorrencia ocr
+		inner join funcionario func on func.cpf = ocr.Funcionario_cpf;
+
+select func.cpf "CPF", upper(func.nome) "Funcionário",
+	fer.periodoAqt "Período Aquisitivo das Férias",
+	date_format(fer.dataInicio, '%d/%m/%Y') "Data de Início das Férias",
+    date_format(fer.dataFim, '%d/%m/%Y') "Data de Fim das Férias",
+    timestampdiff(day, fer.dataInicio, fer.dataFim) "Quantidade de Dias",
+    replace(replace(fer.addDecimal, 1, "Sim"), 0, "Não") "Adiantamento de 13º",
+    concat("R$ ", format(fer.valor, 2, 'de_DE')) "Valor a ser Pago"
+    from ferias fer
+		inner join funcionario func on func.cpf = fer.funcionario_cpf
+			order by func.nome, fer.periodoAqt desc;
+    
+select upper(func.nome) as "Funcionário", func.cpf "CPF", 
+	date_format(func.dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+    case func.genero
+		when 'F' then "Feminino"
+        when 'M' then "Masculino"
+		else "Outro"
+    end "Gênero",
+    group_concat(distinct tel.numero separator " | ") "Telefone",
+	func.email "E-mail", 
+	crg.nome "Cargo",
+    dep.nome "Departamento",
+    concat("R$ ", format(func.salario, 2, 'de_DE')) "Salário",
+    ifnull(grt.nome, "Não existente!") "Gerente"
+	from funcionario func
+		left join telefone tel on tel.Funcionario_cpf = func.cpf
+        inner join trabalhar trb on trb.Funcionario_cpf = func.cpf
+        inner join cargo crg on crg.cbo = trb.Cargo_cbo
+        inner join departamento dep on dep.idDepartamento = trb.Departamento_idDepartamento
+        left join funcionario grt on grt.cpf = dep.Gerente_cpf
+			where trb.dataFim is null
+				group by func.cpf, crg.cbo, dep.idDepartamento
+					order by func.nome;
+
+-- hospede, contato, idade, entrar ou não em contato
+select nome "Hospede", concat(telefone, " | " ,email) "Contato",
+	timestampdiff(year, datanasc, now()) "Idade",
+    case when timestampdiff(year, datanasc, now()) between 35 and 45 then "Sim"
+		else "Talvez"
+	end "Entre em Contato"
+	from hospede
+		order by nome;
 
 
 
+    
+    
+    
+    
 
 
 
