@@ -362,7 +362,39 @@ select nome "Hospede", concat(telefone, " | " ,email) "Contato",
 	from hospede
 		order by nome;
 
+delimiter $$
+create function valeTransporte(pCPF varchar(14))
+	returns decimal(5,2) deterministic
+    begin
+		declare valeTransp decimal(5,2) default 0.0;
+        declare auxCid varchar(60);
+        declare auxSal decimal(7,2);
+        select cidade into auxCid from endereco 
+			where Funcionario_cpf = pCPF;
+		select salario into auxSal from funcionario	
+			where cpf = pCPF;
+		if auxCid like "Recife" 
+			then set valeTransp = 22 * 2 * 4.3;
+		else 
+			set valeTransp = 22 * 2 * 5.1;
+        end if;
+        set valeTransp = valeTransp - auxSal * 0.06;
+        if valeTransp > 0
+			then return valeTransp;
+		else
+			return 0.0;
+		end if;
+    end $$
+delimiter ;
 
+select upper(f.nome) as "Funcionário", f.cpf "CPF", 
+	concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário Bruto",
+	concat("R$ ", format(count(d.cpf) * 180, 2, 'de_DE')) "Auxílio Creche",
+    concat("R$ ", format(valeTransporte(f.cpf), 'de_DE')) "Vale Transporte"
+		from funcionario f
+			left join vdepauxcreche d on d.Funcionario_cpf = f.cpf
+				group by f.cpf
+					order by f.nome;
 
     
     
