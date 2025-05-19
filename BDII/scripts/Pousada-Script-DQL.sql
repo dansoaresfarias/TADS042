@@ -387,10 +387,67 @@ create function valeTransporte(pCPF varchar(14))
     end $$
 delimiter ;
 
+delimiter $$
+create function calcAuxSaude(pDataNasc datetime)
+	returns decimal(5,2) deterministic
+    begin
+		declare auxSaude decimal(5,2) default 0.0;
+        declare idade int;
+        set idade = timestampdiff(year, pDataNasc, now());
+        set auxSaude = 150 + (50 * (round(idade/10) - 2));
+        return auxSaude;
+    end $$
+delimiter ;
+
+delimiter $$
+create function calcINSS(pSalario decimal(7,2))
+	returns decimal(6,2) deterministic
+	begin
+		declare inss decimal(6,2) default 0.0;
+        if pSalario <= 1518
+			then set inss = pSalario * 0.075;
+		elseif pSalario > 1518 and pSalario <= 2793.88 
+			then set inss = pSalario * 0.09;
+		elseif pSalario between 2793.89 and 4190.83
+			then set inss = pSalario * 0.12;
+		elseif pSalario > 4190.83 and pSalario <= 8157.41
+			then set inss = pSalario * 0.14;
+		else set inss = 8157.41 * 0.14;
+        end if;
+        return inss;
+    end $$
+delimiter ;
+
+delimiter $$
+create function calcIRRF(pSalario decimal(7,2))
+	returns decimal(7,2) deterministic
+	begin
+		declare IRRF decimal(7,2) default 0.0;
+        if pSalario < 2259.20 
+			then set IRRF = 0.0;
+		elseif pSalario > 2259.20 and pSalario <= 2826.65 
+			then set IRRF = pSalario * 0.075;
+		elseif pSalario > 2826.65 and pSalario <= 3751.05
+			then set IRRF = pSalario * 0.15;
+		elseif pSalario > 3751.05 and pSalario <= 4664.68
+			then set IRRF = pSalario * 0.225;
+		else set IRRF = pSalario * 0.275;
+        end if;
+        return IRRF;
+    end $$
+delimiter ;
+
 select upper(f.nome) as "Funcionário", f.cpf "CPF", 
 	concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário Bruto",
 	concat("R$ ", format(count(d.cpf) * 180, 2, 'de_DE')) "Auxílio Creche",
-    concat("R$ ", format(valeTransporte(f.cpf), 'de_DE')) "Vale Transporte"
+    concat("R$ ", format(valeTransporte(f.cpf), 2, 'de_DE')) "Vale Transporte",
+    concat("R$ ", format(22 * 25, 2, 'de_DE')) "Vale Alimentação",
+    concat("R$ ", format(calcAuxSaude(f.dataNasc), 2, 'de_DE')) "Auxílio Saúde",
+    concat("R$ -", format(calcINSS(f.salario), 2, 'de_DE')) "INSS",
+    concat("R$ -", format(calcIRRF(f.salario), 2, 'de_DE')) "IRRF",
+    concat("R$ ", format(f.salario + count(d.cpf) * 180 + valeTransporte(f.cpf) +
+		22 * 25 + calcAuxSaude(f.dataNasc) - calcINSS(f.salario) -
+        calcIRRF(f.salario), 2, 'de_DE')) "Salário Líquido"
 		from funcionario f
 			left join vdepauxcreche d on d.Funcionario_cpf = f.cpf
 				group by f.cpf
