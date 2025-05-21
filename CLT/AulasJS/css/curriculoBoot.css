@@ -1,0 +1,155 @@
+:root {
+    --corBranca: #FFFFFF;
+    --corPreta: #000000;
+    --cor1: #F1EFEC;
+    --cor2: #D4C9BE;
+    --cor3: #123458;
+    --cor4: #030303;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--corBranca);
+    background-image: linear-gradient(115deg, var(--corBranca) 0%, var(--cor1) 50%, var(--cor2) 100%);
+    font-size: 1.1em;    
+}
+
+footer {
+    text-align: center;
+    background-color: var(--cor3);
+    color: var(--cor1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--cor3);
+}
+
+img.foto {
+    width: 90%;
+    opacity: 80%;
+}
+
+p.justificado {
+    text-align: justify;
+}
+
+.tab{
+    margin-left: 1em;
+}
+
+.hrBcg {
+    background-color: var(--cor2);
+}
+
+.subTopBcgSobre {
+    background-color: var(--cor3);
+    width: 5.5em;
+}
+
+.subTopBcgFormacao {
+    background-color: var(--cor3);
+    width: 9em;
+}
+
+.subTopBcgExp {
+    background-color: var(--cor3);
+    width: 20em;
+}
+
+.subTopBcgHab {
+    background-color: var(--cor3);
+    width: 18em;
+}
+
+.subTopBcgCont {
+    background-color: var(--cor3);
+    width: 7em;
+}
+
+.subTopBcgEnd {
+    background-color: var(--cor3);
+    width: 8em;
+}
+
+a.menuDanilo {
+    color: var(--cor1);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--cor3);
+}
+
+a.menuDanilo:hover {
+    background-color: var(--cor4);
+    color: var(--corBranca);
+}
+
+a {
+    text-decoration: none;
+    color: var(--corPreta);
+    font-weight: bold;
+}
+
+button.formulario {
+    background-color: var(--cor3);
+    color: var(--corBranca);
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button.formulario:hover {
+    background-color: var(--cor4);
+    color: var(--corBranca);
+}
+
+th.curriculo {
+    background-color: var(--cor3);
+    color: var(--corBranca);
+    padding: 0.5em;
+    text-align: center;
+}
+
+th.largo20{
+    width: 20%;
+}
+
+th.largo10{
+    width: 10%;
+}
+
+#menuDanilo {
+    background-color: var(--cor3);
+    padding: 1em;
+    text-align: center;
+}
+
+#sobre {
+    scroll-margin-top: 120px;
+}
+
+#formacao{
+    scroll-margin-top: 120px;
+}
+
+#experiencia{
+    scroll-margin-top: 120px;
+}
+
+#habilidades{
+    scroll-margin-top: 120px;
+}
+
+#contato{
+    scroll-margin-top: 120px;
+}
+
+#endereco{
+    scroll-margin-top: 120px;
+}

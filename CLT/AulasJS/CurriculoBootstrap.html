@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://cdn-icons-png.freepik.com/512/6840/6840478.png" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+
+    <script src="curriculo.js"></script>    
+
+    <link id="cssJoao" rel="stylesheet" href="css/curriculoBoot.css">
+
+    <title>Currículo - Danilo Farias</title>
+</head>
+
+<body>
+    <nav id="menuDanilo" class="fixed-top">
+        <div class="container d-flex justify-content-center">
+            <a class="menuDanilo mx-2" href="#apresentacao">Danilo Farias</a>
+            <a class="menuDanilo mx-2" href="#sobre">Sobre</a>
+            <a class="menuDanilo mx-2" href="#formacao">Formação Acadêmica
+            </a>
+            <a class="menuDanilo mx-2" href="#experiencia">Experiência Profissional</a>
+            <a class="menuDanilo mx-2" href="#habilidades">Habilidades</a>
+            <a class="menuDanilo mx-2" href="#contato">Contato</a>
+            <a class="menuDanilo mx-2" href="#endereco">Endereço</a>
+            <button class="btn btn-secondary rounded-5 mx-2" id="btnJoao" onclick="hackear()">Não Clique</button>
+        </div>
+    </nav>
+    <main>
+        <div id="apresentacao" class="container">
+            <div class="row align-items-center">
+                <div class="col-4 text-right">
+                    <img id="foto" class="foto" src="img/daniloFarias.gif" alt="Foto de Danilo Farias" title="Danilo Farias">
+                </div>
+                <div id="secNome" class="col-8 text-center">
+                    <h1 id="nome">Danilo Farias Soares da Silva</h1>
+                    <h3 id="cargo">(Analista de Sistemas)</h3>
+                </div>
+            </div>
+            <div class="card hrBcg my-2"></div>
+        </div>
+        <div id="sobre" class="container">
+            <h2>Sobre</h2>
+            <div class="card subTopBcgSobre my-2"></div>
+            <div class="container">
+                <p class="justificado">Graduado em Tecnologia em Análise e Desenvolvimento de Sistemas pelo Instituto
+                    Federal de Educação, Ciência e
+                    Tecnologia de Pernambuco (IFPE), Mestre em Ciência da Computação pelo Centro de Informática da
+                    Universidade
+                    Federal de Pernambuco (UFPE), especialista em Informática em Saúde pela Universidade Federal de São
+                    Paulo
+                    (UNIFESP). Atualmente exerce o cargo de Técnico em Tecnologia da Informação no Hospital das Clínicas
+                    da
+                    UFPE,
+                    atuando como Analista de Sistemas do Núcleo de Telessaúde da UFPE, desenvolvendo atividades de
+                    engenharia de
+                    software, engenharia de requisitos e gestão de processo de negócio. Também atua como Professor
+                    Acadêmico
+                    nos
+                    cursos de Computação na instituição Faculdade SENAC de PE.
+                    <br><br>
+                    <b>Contato:</b><br>
+                    <span class="tab">
+                        <strong>Telefone:</strong> (81)981905671 <br>
+                    </span>
+                    <span class="tab"><strong>Email:</strong> dansoaresfarias@gmail.com</span>
+                </p>
+                <center>
+                    <a href="https://www.linkedin.com/in/dansoaresfarias/" target="_blank">
+                        <img src="img/logo-linkedin-1024.png" alt="Logo do Linkedin" title="Likedin de Danilo Farias"
+                            height="40px"></a>
+                    <a href="https://github.com/dansoaresfarias" target="_blank">
+                        <img src="img/gitHub.png" alt="Logo do GitHub" title="GitHub de Danilo Farias"
+                            height="40px"></a>
+                </center>
+            </div>
+            <div class="card hrBcg my-2"></div>
+        </div>
+        <div id="formacao" class="container">
+            <h2>Formação</h2>
+            <div class="card subTopBcgFormacao my-2"></div>
+            <div class="container">
+                <ol>
+                    <li><a href="https://www.ufpe.br/engenharia-biomedica-bacharelado-ctg" target="_blank">Graduação
+                            Incompleta
+                            em
+                            Engenharia Biomédica</a></li>
+                    <dd>- UFPE (2005 a 2009)</dd>
+                    <li><a href="https://portal.ifpe.edu.br/recife/cursos/superiores/tecnologos/analise-e-desenvolvimento-de-sistemas/"
+                            target="_blank">Tecnólogo em Análise e Desenvolvimento de Sistenas</a> </li>
+                    <dd>- IFPE (2006 a 2008)</dd>
+                    <li><a href="https://portal.cin.ufpe.br/pos-graduacao/stricto-sensu/programa-academico/mestrado-academico/"
+                            target="_blank">Mestrado em Ciência da Computação</a></li>
+                    <dd>- UFPE (2013 a 2015)</dd>
+                    <li><a href="https://informaticaemsaude.com.br/is.uab/index.html" target="_blank"> Especialista em
+                            Informática
+                            em Saúde</a></li>
+                    <dd>- UNIFESP (2016 a 2018)</dd>
+                </ol>
+            </div>
+            <div class="card hrBcg my-2"></div>
+        </div>
+        <div id="experiencia" class="container">
+            <h2>Experiência Profissional</h2>
+            <div class="card subTopBcgExp my-2"></div>
+            <div class="container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="curriculo largo10">Período</th>
+                            <th class="curriculo largo20">Instituição</th>
+                            <th class="curriculo">Cargo</th>
+                            <th class="curriculo">Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2023-Atual</td>
+                            <td>UFPE - SPREAD</td>
+                            <td>Analista de Sistemas</td>
+                            <td>Atuando como Analista de Sistemas da Superintendência de Ensino a Distância da UFPE,
+                                desenvolvendo atividades de
+                                análise de dados, análise de sistemas e gestão de TI.</td>
+                        </tr>
+                        <tr>
+                            <td>2010-2023</td>
+                            <td>UFPE - HC - NUTES</td>
+                            <td>Analista de Sistemas</td>
+                            <td>Atuando como Analista de Sistemas do Núcleo de Telessaúde da UFPE, desenvolvendo
+                                atividades
+                                de
+                                engenharia de software, engenharia de requisitos e gestão de processo de negócio</td>
+                        </tr>
+                        <tr>
+                            <td>2008-2010</td>
+                            <td>5IT</td>
+                            <td>Desenvolvimento JAVA</td>
+                            <td>Desenvolvimento back-end com JAVA para implementação de uma solução de automação de
+                                serviços
+                                gatronômicos.</td>
+                        </tr>
+                        <tr>
+                            <td>2007-2008</td>
+                            <td>IFPE - SIEPE</td>
+                            <td>Estagiário em Desenvolvimento Back-End</td>
+                            <td>Desenvolvimento back-end com JAVA para implementação de um sistema de atualização de
+                                dados
+                                educacionais dos IFs para o MEC.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card hrBcg my-2"></div>
+        </div>
+        <div id="habilidades" class="container">
+            <h2>Habilidades Técnicas</h2>
+            <div class="card subTopBcgHab my-2"></div>
+            <div class="container">
+                <ul>
+                    <li>Desenvolvimento de Software</li>
+                    <li>Engenharia de Requisitos</li>
+                    <li>Gestão de Processo de Negócio</li>
+                    <li>Desenvolvimento Web</li>
+                    <li>Desenvolvimento Aplicações para Saúde</li>
+                    <li>Linguagens de Programação: JAVA, C#, TypeScript, NodeJS</li>
+                </ul>
+            </div>
+            <div class="card hrBcg my-2"></div>
+        </div>
+        <div id="contato" class="container">
+            <h2>Contato</h2>
+            <div class="card subTopBcgCont my-2"></div>
+            <div class="container">
+                <p class="justificado">Para entrar em contato, utilize o formulário abaixo:</p>
+                <form action="">
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="nome" class="form-label"><strong>Nome</strong></label>
+                            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="Sobrenome" class="form-label"><strong>Sobrenome</strong></label>
+                            <input type="text" class="form-control" id="sobrenome" placeholder="Digite seu sobrenome" required>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="email" class="form-label"><strong>Email</strong></label>
+                            <input type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="telefone" class="form-label"><strong>Telefone</strong></label>
+                            <input type="tel" class="form-control" id="telefone"
+                                placeholder="Digite seu telefone | (99)99999-9999" pattern="([0-9]{2})[0-9]{5}-[0-9]{4}" required>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-6">
+                                <label for="dataHora" class="form-label"><strong>Data/Hora</strong></label>
+                                <input type="datetime-local" class="form-control" id="dataHora" required min="2025-04-23" max="2025-12-31">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="mensagem" class="form-label"><strong>Mensagem</strong></label>
+                                <textarea class="form-control" id="mensagem" rows="3" placeholder="Conte sua história..."
+                                    required></textarea>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-12 text-center">
+                            <button type="reset" class="btn formulario">Cancelar</button>
+                            <button type="submit" class="btn formulario">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card hrBcg my-2"></div>
+        </div>
+        <div id="endereco" class="container">
+            <h2>Endereço</h2>
+            <div class="card subTopBcgEnd my-2"></div>
+            <div class="container text-center">
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.378169284305!2d-34.908126726189806!3d-8.062853380563778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18d869e7548d%3A0xc9e915120c2bd6ea!2sR.%20Abd%C3%ADsio%20Veiga%20-%20Ilha%20do%20Retiro%2C%20Recife%20-%20PE%2C%2050720-725!5e0!3m2!1spt-PT!2sbr!4v1743632029351!5m2!1spt-PT!2sbr"
+                        width=90% height="400" frameborder="0" style="border:0;" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        <div class="card hrBcg my-2"></div>
+        </div>
+    </main>
+</body>
+<footer>
+    Copyright&copy; 2025 Danilo Farias. Todos os Direitos Reservados.
+</footer>
+
+</html>
