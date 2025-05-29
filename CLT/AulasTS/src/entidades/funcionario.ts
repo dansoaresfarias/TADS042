@@ -17,7 +17,6 @@ export class funcionario  {
         dataNascimento: Date,
         email: string,
         salario: number,
-        status: boolean,
         nomeSocial?: string,
         fg?: number
     ) {
@@ -27,7 +26,7 @@ export class funcionario  {
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.salario = salario;
-        this.status = status;
+        this.status = true;
         this.nomeSocial = nomeSocial;
         this.fg = fg;        
     }
