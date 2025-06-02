@@ -453,10 +453,68 @@ select upper(f.nome) as "Funcionário", f.cpf "CPF",
 				group by f.cpf
 					order by f.nome;
 
+delimiter $$   
+create procedure cadFunc(in pcpf varchar(14),
+						in pnome varchar(80),
+						in pnomeSocial varchar(45),
+						in pgenero char(1),
+						in pdataNasc date,
+						in pemail varchar(45),
+						in psalario decimal(7,2),
+						in pfg decimal(6,2),
+                        in pNumTel1 varchar(15),
+                        in pNumTel2 varchar(15),
+                        in pNumTel3 varchar(15),
+                        in pUF char(2),
+						in pcidade varchar(45),
+						in pbairro varchar(45),
+						in prua varchar(45),
+						in pnumero int,
+						in pcomp varchar(45),
+						in pcep varchar(9))
+	begin
+		insert into funcionario
+			value (pcpf, pnome, pnomesocial, pgenero, pdatanasc, pemail,
+				psalario, 1, pfg);
+		insert into telefone (numero, Funcionario_cpf)
+			value (pNumTel1, pcpf);
+		if pNumTel2 is not null
+			then insert into telefone (numero, Funcionario_cpf)
+				value (pNumTel2, pcpf);
+		end if;
+        if pNumTel3 is not null
+			then insert into telefone (numero, Funcionario_cpf)
+				value (pNumTel3, pcpf);
+		end if;
+        insert into endereco 
+			value (pcpf, puf, pcidade, pbairro, prua, pnumero, pcomp, pcep);
+    end $$
+delimiter ;
     
+call cadFunc("119.911.919-11", "Juliana Pelozo", "Juh", 'F', '1997-07-25', 
+	"juh.pelozo@gmail.com", 3000, 1200, "(81)99312-3219", "(81)98765-5679",
+    null, 'PE', "Recife", "Boa Viagem", "Rua Major Armando", 321, "Ap 1302", '50170-090');    
+
+select * from funcionario;
+
+select * from telefone;
+
+SELECT * FROM tropicanatads042.endereco;
+
     
+delimiter $$
+create trigger tgrAftInsertHospedagem after insert
+	on hospedagem
+    for each row
+		begin
+			update reserva
+				set status = "Checked-in"
+					where idReserva = new.Reserva_idReserva;
+        end $$
+delimiter ;    
     
-    
+insert into hospedagem
+	value (77, 0.0, now(), null);
 
 
 
