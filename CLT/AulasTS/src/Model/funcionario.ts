@@ -1,3 +1,6 @@
+import { endereco } from './endereco';
+import { telefone } from './telefone';
+
 export class funcionario  {
 
     private cpf: string;
@@ -9,6 +12,8 @@ export class funcionario  {
     private salario: number;
     private status: boolean;
     private fg?: number;
+    private endereco: endereco;
+    private telefones : telefone[] = [];
 
     constructor(
         cpf: string,
@@ -17,6 +22,7 @@ export class funcionario  {
         dataNascimento: Date,
         email: string,
         salario: number,
+        endereco: endereco,
         nomeSocial?: string,
         fg?: number
     ) {
@@ -28,7 +34,8 @@ export class funcionario  {
         this.salario = salario;
         this.status = true;
         this.nomeSocial = nomeSocial;
-        this.fg = fg;        
+        this.fg = fg;
+        this.endereco = endereco;        
     }
 
     public getCpf(): string {
@@ -103,8 +110,16 @@ export class funcionario  {
         this.fg = fg;
     }
 
+    public getEndereco() : endereco {
+        return this.endereco;
+    }
+    
+    public setEndereco(endereco: endereco): void {
+        this.endereco = endereco;
+    }
+
     public toString(): string {
-        return `Funcionario: ${this.nome}, CPF: ${this.cpf}, Email: ${this.email}, Salario: ${this.salario}, Status: ${this.status}`;
+        return `Funcionario: ${this.nome}, CPF: ${this.cpf}, Email: ${this.email}, Salario: R$${this.salario}, Status: ${this.status}, Telefones: ${this.telefones.map(tel => tel.getNumero()).join(', ')} , ${this.endereco.toString()}`;
     }
 
     public toJSON(): object {
@@ -117,7 +132,28 @@ export class funcionario  {
             email: this.email,
             salario: this.salario,
             status: this.status,
-            fg: this.fg
+            fg: this.fg,
+            endereco: this.endereco.toString()
         };
     }
+
+    public addTelefone(telefone: telefone): void {
+        this.telefones.push(telefone);
+    }
+
+    public addNumTelefone(numero: string) : void {
+        this.telefones.push(new telefone(numero));
+    }
+
+    public removerTelefone(telefone: telefone): void {
+        const index = this.telefones.indexOf(telefone);
+        if (index > -1) {
+            this.telefones.splice(index, 1);
+        }
+    }
+
+    public removerNumTelefone(numero: string): void {
+        this.telefones = this.telefones.filter(telefone => telefone.getNumero() !== numero);
+    }
+
 }
