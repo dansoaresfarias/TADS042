@@ -1,0 +1,31 @@
+{
+  "name": "apipousada",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev src/index.ts",
+    "start": "node build/index.js",
+    "build": "rimraf .build && tsc"
+  },
+  "keywords": [
+    "Ensino",
+    "NodeJS",
+    "TypeScript",
+    "API"
+  ],
+  "author": "Danilo Farias",
+  "license": "ISC",
+  "description": "API WEB para o ensino de NodeJS e TS.",
+  "dependencies": {
+    "mysql2": "^3.14.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.24",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.1",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.20.1"
+  }
+}
