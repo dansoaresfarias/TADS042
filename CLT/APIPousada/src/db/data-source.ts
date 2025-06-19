@@ -12,5 +12,5 @@ export const AppDataSource = new DataSource({
     database: dbConfig.database,
     entities: [UH],
     synchronize: false,
-    logging: true,
+    logging: false,
 })
