@@ -76,11 +76,9 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereco: \nUF= " + uf + "\nCidade= " + cidade + 
-				"\nBairro= " + bairro + "\nRua= " + rua + 
-				"\nNumero= " + numero +
-				"\nComplemento= " + comp
-				+ "\nCEP= " + cep ;
+		return rua + ", Nº " + numero +	", " + comp
+				+ ", " + bairro +	", " + cidade + "-" + uf
+				+ ", " + cep ;
 	}
 
 }
