@@ -44,12 +44,12 @@ export class Transacao {
     }
 
     public toString(): string {
-        let info = `Tipo: ${this.tipo}\nValor: ${this.valor.toFixed(2)}\nData: ${this.data.toLocaleString()}\nTipo de Valor: ${this.tipoValor}`;
+        let info = `${this.data.toLocaleString()} \t ${this.tipo} \t ${this.tipoValor} R$ ${this.valor.toFixed(2)}`;
         if(this.clienteTransferencia) {
-            info += `\nCliente de Transferência: ${this.clienteTransferencia.getNome()}`;
+            info += `\tCliente de Transferência: ${this.clienteTransferencia.getNome()}`;
         }
         if(this.infoPagamento) {
-            info += `\nInfo Pagamento: ${this.infoPagamento}`;
+            info += `\tInformações do Pagamento: ${this.infoPagamento}`;
         }
         return info;
     }

@@ -39,7 +39,7 @@ public class Conta {
 		if (this.status && valor > 0 && this.saldo >= valor) {
 			this.saldo -= valor; //this.saldo = this.saldo - valor
 			Transacao transacao = new Transacao(TipoTransacao.Saque, 
-					valor, null, '-');
+					valor, '-');
 			this.transacoes.add(transacao);
 			return true;
 		} else {
@@ -53,7 +53,7 @@ public class Conta {
 		if (this.status && valor > 0) {
 			this.saldo += valor; //this.saldo = this.saldo + valor
 			Transacao transacao = new Transacao(TipoTransacao.Depósito, 
-					valor, null, '+');
+					valor, '+');
 			this.transacoes.add(transacao);
 			return true;
 		} else {
@@ -63,10 +63,56 @@ public class Conta {
 	}
 	
 	//transferir
+	public boolean transferir(double valor, Conta contaDestino) {
+		if(valor > 0 && contaDestino.status && this.status) {
+			if (this.saldo >= valor) {
+				this.saldo -= valor;
+				this.transacoes.add(new Transacao(TipoTransacao.Transaferência, 
+						valor, contaDestino.cliente, '-'));
+				contaDestino.saldo += valor;
+				contaDestino.transacoes.add(new Transacao(TipoTransacao.Transaferência,
+						valor, this.cliente, '+'));
+				return true;
+			} else {
+				System.out.println("Saldo insuficiente!");
+				return false;
+			}
+		} else {
+			System.out.println("Valores inválidos!");
+			return false;
+		}
+	}
 	
 	//pagar
+	public boolean pagar(double valor, String infoPagmento) {
+		if (valor > 0 && this.status && infoPagmento != null) {
+			if (this.saldo >= valor) {
+				this.saldo -= valor;
+				this.transacoes.add(new Transacao(TipoTransacao.Pagamento, 
+						valor, infoPagmento, '-'));
+				return true;
+			} else {
+				System.out.println("Saldo insuficiente!");
+				return false;
+			}
+		} else {
+			System.out.println("Valores inválidos!");
+			return false;
+		}
+	}
 	
 	//imprimir extrato
+	public String gerarExtrato() {
+		String extrato = ".:: Extrato da Conta " + this.numero + " ::.\n";
+		extrato += "Cliente: " + this.cliente.getNome() + ", CPF: " + 
+				this.cliente.getCpf() + "\n" + "Agência " + this.ag.getNome()
+				+ ", Nº " + this.ag.getNumero() + "\n";
+		for (Transacao transacao : transacoes) {
+			extrato += transacao + "\n";
+		}		
+		extrato += "Salado atual: R$ " + this.saldo;
+		return extrato;
+	}
 
 	public Agencia getAg() {
 		return ag;

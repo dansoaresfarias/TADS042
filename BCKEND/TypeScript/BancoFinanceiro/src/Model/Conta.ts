@@ -76,7 +76,7 @@ export class Conta {
     }
 
     //pagar
-    public realizarPagamento(valor: number, infoPagamento: string): boolean {
+    public pagar(valor: number, infoPagamento: string): boolean {
         if(this.status && infoPagamento && valor > 0 && this.saldo >= valor) {
             this.saldo -= valor;
             const transacao = new Transacao(TipoTransacao.PAGAMENTO, valor, "-", undefined, infoPagamento);
@@ -112,7 +112,7 @@ export class Conta {
             console.log("Nenhuma transação realizada.");
         } else {
             this.transacoes.forEach((transacao, index) => {
-                console.log(`\nTransação ${index + 1}:\n${transacao.toString()}`);
+                console.log(`${transacao.toString()}`);
             });
         }
         console.log(`Saldo Atual: R$ ${this.saldo.toFixed(2)}\n`);
