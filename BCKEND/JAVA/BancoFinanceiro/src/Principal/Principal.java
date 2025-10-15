@@ -5,7 +5,8 @@ import java.util.Date;
 import Model.Agencia;
 import Model.Cliente;
 import Model.Endereco;
-import Model.Conta;
+import Model.ContaCorrente;
+import Model.ContaPoupanca;
 
 public class Principal {
 
@@ -37,8 +38,8 @@ public class Principal {
 				"ag.suassuna@banco.senac.br", "(81)21264534", 
 				endAgSuassuna);
 		
-		Conta contaRenato = new Conta(renato, 1234, agSuassuna);
-		Conta contaDani = new Conta(daniela, 4321, agSuassuna);
+		ContaCorrente contaRenato = new ContaCorrente(renato, 1234, agSuassuna);
+		ContaPoupanca contaDani = new ContaPoupanca(daniela, 4321, agSuassuna);
 		
 		
 		contaRenato.depositar(3500);

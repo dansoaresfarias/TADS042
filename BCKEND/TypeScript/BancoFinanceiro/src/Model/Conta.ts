@@ -3,7 +3,7 @@ import { Cliente } from "./Cliente";
 import { TipoTransacao } from "./TipoTransacao";
 import { Transacao } from "./Transacao";
 
-export class Conta {
+export abstract class Conta {
 
     private cliente: Cliente;
     private numero: number;
