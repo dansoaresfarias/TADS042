@@ -8,7 +8,6 @@ public class IndexController {
 	
 	@GetMapping("/")
 	public String index() {
-		System.out.println("Oi cheguei aqui!");
 		return "index";
 	}
 
