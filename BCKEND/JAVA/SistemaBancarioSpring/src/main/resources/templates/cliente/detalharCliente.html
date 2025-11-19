@@ -22,32 +22,32 @@
 	</div>	
     <br>
         <div class="center">
-            <h4> Cadastro de Cliente </h4>
+            <h4> Cliente Detalhado </h4>
         </div>
     <br>
-    <form method="post" class="container">
+    <form method="post" class="container" th:object="${cliente}">
         <div class="row">
             <div class="input-field col s12">
-                <b>Nome:</b> <input type="text" value="" name="nome" />
+                <b>Nome:</b> <input type="text" value="${cliente.nome}" name="nome" />
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <b>CPF:</b> <input type="text" value="" name="cpf" />
+                <b>CPF:</b> <input type="text" value="${cliente.cpf}" name="cpf" />
             </div>
             <div class="input-field col s3">
-                <b>Data de Nascimento:</b> <input type="date" value="" name="dataNasc" />
+                <b>Data de Nascimento:</b> <input type="date" value="${cliente.dataNasc}" name="dataNasc" />
             </div>
             <div class="input-field col s3">
-                <b>RG:</b> <input type="text" value="" name="rg" />
+                <b>RG:</b> <input type="text" value="${cliente.rg}" name="rg" />
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <b>Email:</b> <input type="email" value="" name="email" />
+                <b>Email:</b> <input type="email" value="${cliente.email}" name="email" />
             </div>
             <div class="input-field col s6">
-                <b>Telefone:</b> <input type="tel" value="" name="telefone" />
+                <b>Telefone:</b> <input type="tel" value="${cliente.telefone}" name="telefone" />
             </div>
         </div>
         <div class="row center">
